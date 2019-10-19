@@ -20,3 +20,16 @@
 .App-link {
   color: #09d3ac;
 }
+
+.Arrange-Horizontally *{
+  display: inline-block;
+  margin-left: 0px;
+  vertical-align: top;
+}
+
+.HeaderTable {
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
