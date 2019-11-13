@@ -82,7 +82,12 @@ class ConnectionState extends React.Component {
     if (this.props.isConnected)
       connectionText = "Connected";
     else
-      connectionText = "Disconnected";
+    {
+      if (this.props.isError)
+        connectionText = "Disconnected: Error";
+      else
+        connectionText = "Disconnected";
+    }
 
     return (
       <div>{connectionText}</div>
@@ -166,7 +171,8 @@ class ROSConnection extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {connected: false, ROS: new ROSLIB.Ros(), hostName: "localhost"};
+    this.state = {connected: false, ROS: new ROSLIB.Ros(), 
+                hostName: "localhost", error: false};
     this.handleStateChangeRequest = this.handleStateChangeRequest.bind(this);
     this.handleHostNameChange = this.handleHostNameChange.bind(this);
 
@@ -207,12 +213,14 @@ class ROSConnection extends React.Component {
   }
 
   onConnection() {
-    this.setState({connected: true});
+    this.setState({connected: true, error: false});
     console.log("connected to ws");
   }
 
   onError(err) {
     console.log("error on ws");
+    console.log(err);
+    this.setState({error: true});
   }
 
   onClose() {
@@ -233,7 +241,7 @@ class ROSConnection extends React.Component {
                   <ConnectControl isConnected={this.state.connected} onStateChangeRequest={this.handleStateChangeRequest} />
                 </Grid>
                 <Grid item xs>
-                  <ConnectionState isConnected={this.state.connected} />
+                  <ConnectionState isConnected={this.state.connected} isError={this.state.error}/>
                 </Grid>
             </Grid>
           </AppBar>

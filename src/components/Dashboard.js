@@ -16,6 +16,7 @@ import Box from '@material-ui/core/Box';
 
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'; 
+import StatusTopic from './StatusTopic';
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class Dashboard extends React.Component {
         return(
             <div>
                 <ParamDetail ROS={this.props.ROS} connected={this.props.connected} paramName="/rosdistro" />
-
+                <StatusTopic ROS={this.props.ROS} connected={this.props.connected} topicName="/status" />
             </div>
         );
     }

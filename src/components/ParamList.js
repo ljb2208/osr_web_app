@@ -23,6 +23,11 @@ const SelectTable = selectTableHOC(ReactTable);
                     currentSelectedParamIndex: -1, 
                     getAllParamValues: false};
     }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.connected != prevProps.connected && this.props.connected)
+        this.tick();
+    }
   
     componentDidMount() {
       this.timerID = setInterval(

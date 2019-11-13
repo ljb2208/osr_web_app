@@ -31,6 +31,11 @@ class NodeList extends React.Component {
     componentWillUnmount() {
       clearInterval(this.timerID);
     }
+
+    componentDidUpdate(prevProps) {
+      if (this.props.connected != prevProps.connected && this.props.connected)
+        this.tick();
+    }
   
     tick() {
       if (this.props.connected)
@@ -46,10 +51,11 @@ class NodeList extends React.Component {
 
     listTopics(topics) {
         const topicVals = [];
+
+        console.log(topics.topics.length);
   
         for (var i=0; i < topics.topics.length; i++)
         {
-            console.log(topics[i]);
             var topic;
             topic = {topicName: topics.topics[i], topicType: topics.types[i]};
             topicVals.push(topic); 
