@@ -4,12 +4,6 @@ import ROSLIB from 'roslib';
 import ReactTable from 'react-table';
 import selectTableHOC from 'react-table/lib/hoc/selectTable';
 import 'react-table/react-table.css';
-import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField'; 
 
 const SelectTable = selectTableHOC(ReactTable); 

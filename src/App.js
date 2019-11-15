@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import Fab from '@material-ui/core/Fab';
+import RunStop from './components/RunStop';
 
 function App() {
   return (
@@ -242,6 +243,9 @@ class ROSConnection extends React.Component {
                 </Grid>
                 <Grid item xs>
                   <ConnectionState isConnected={this.state.connected} isError={this.state.error}/>
+                </Grid>
+                <Grid item xs>
+                  <RunStop isConnected={this.state.connected} ROS={this.state.ROS}/>
                 </Grid>
             </Grid>
           </AppBar>

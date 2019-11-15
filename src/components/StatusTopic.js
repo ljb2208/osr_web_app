@@ -2,18 +2,7 @@ import React from 'react';
 import './../App.css';
 import Roboclaw from './Roboclaw.js';
 import ROSLIB from 'roslib';
-import ReactTable from 'react-table';
-import selectTableHOC from 'react-table/lib/hoc/selectTable';
-import 'react-table/react-table.css';
-import Grid from '@material-ui/core/Grid';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField'; 
-
-const SelectTable = selectTableHOC(ReactTable); 
+import Gauge2 from './Gauge.js';
 
 class StatusTopic extends React.Component {
     constructor(props) {
@@ -37,7 +26,7 @@ class StatusTopic extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-      if (this.props.connected != prevProps.connected)
+      if (this.props.connected !== prevProps.connected)
       {
         if (this.props.connected) {
           this.topic.subscribe(this.onMessage.bind(this));
@@ -51,20 +40,13 @@ class StatusTopic extends React.Component {
     render() {
       return (
           <div>
-          <TextField
-            id="Battery"
-            label="Battery Level"
-            value={this.state.batteryLevel}
-            //className={classes.textField}
-            margin="dense"
-            variant="outlined"
-          />
+          <Gauge2 label="Battery Level" width="200" height="150" id="battery" value={this.state.batteryLevel} min="0" max="200" scale="10" valueWarn="155" valueCrit="150" />
           <Roboclaw number="1" error={this.state.rcError[0]} temp={this.state.rcTemp[0]} curr1={this.state.rcCurrent[0]} curr2={this.state.rcCurrent[1]}/>
           <Roboclaw number="2" error={this.state.rcError[1]} temp={this.state.rcTemp[1]} curr1={this.state.rcCurrent[2]} curr2={this.state.rcCurrent[3]} />
           <Roboclaw number="3" error={this.state.rcError[2]} temp={this.state.rcTemp[2]} curr1={this.state.rcCurrent[4]} curr2={this.state.rcCurrent[5]} />
           <Roboclaw number="4" error={this.state.rcError[3]} temp={this.state.rcTemp[3]} curr1={this.state.rcCurrent[6]} curr2={this.state.rcCurrent[7]} />
           <Roboclaw number="5" error={this.state.rcError[4]} temp={this.state.rcTemp[4]} curr1={this.state.rcCurrent[8]} curr2={this.state.rcCurrent[9]} />
-          </div>
+         </div>
       );
     }
   }

@@ -12,7 +12,8 @@
     "react-scripts": "3.2.0",
     "react-svg-gauge": "^1.0.10",
     "roslib": "^1.0.1",
-    "sockjs-client": "^1.4.0"
+    "sockjs-client": "^1.4.0",
+    "typescript": "^3.7.2"
   },
   "scripts": {
     "start": "react-scripts start",
